@@ -27,7 +27,7 @@ public class ServidorAuxiliar {
     );
 
     public static void main(String[] args) throws Exception {
-        // Generar una sola vez el par RSA y el Cipher
+        
         KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
         keyGen.initialize(1024);
         KeyPair parRSA = keyGen.generateKeyPair();
