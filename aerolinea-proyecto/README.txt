@@ -21,3 +21,8 @@ javac common/*.java server/*.java client/*.java
 
 1. Lanzar servidor --------> java server.ServidorPrincipal (Terminal 1)
 2. Lanzar cliente  --------> java client.ClienteConcurrente 4/16/32/64 (Terminal 2)
+
+# Comparar cifrado simetrico y asimetrico
+
+1. Lanzar servidor --------> java server.ServidorAuxiliar (Terminal 1)
+2. Lanzar cliente  --------> java client.Cliente (Terminal 2)

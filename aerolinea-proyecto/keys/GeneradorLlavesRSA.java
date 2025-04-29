@@ -1,37 +1,33 @@
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.PrivateKey;
-import java.security.PublicKey;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
+import java.io.ObjectOutputStream;
+import java.security.*;
 
 public class GeneradorLlavesRSA {
 
     public static void main(String[] args) {
         try {
-            // LLAVES RSA
-            KeyPairGenerator generador = KeyPairGenerator.getInstance("RSA");
-            generador.initialize(1024);
-            KeyPair parLlaves = generador.generateKeyPair();
+            // RSA
+            KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
+            generator.initialize(1024);
+            KeyPair parLlaves = generator.generateKeyPair();
 
             PrivateKey llavePrivada = parLlaves.getPrivate();
             PublicKey llavePublica = parLlaves.getPublic();
 
-            
-            guardarLlave("keys/private.key", llavePrivada.getEncoded());
-            guardarLlave("keys/public.key", llavePublica.getEncoded());
+            guardarObjeto("keys/privada.txt", llavePrivada);
+            guardarObjeto("keys/publica.txt", llavePublica);
 
-            System.out.println("Llaves generadas exitosamente.");
-
-        } catch (NoSuchAlgorithmException | IOException e) {
+            System.out.println(" Llaves RSA generadas.");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private static void guardarLlave(String archivo, byte[] llave) throws IOException {
-        try (FileOutputStream fos = new FileOutputStream(archivo)) {
-            fos.write(llave);
+    private static void guardarObjeto(String archivo, Object objeto) throws IOException {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(archivo))) {
+            oos.writeObject(objeto);
         }
     }
 }
